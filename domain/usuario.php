@@ -7,7 +7,7 @@ class Usuario{
     public $foto;
 
 
-    public function __constructor($db){
+    public function __construct($db){
         $this->conexao = $db;
     }
 
