@@ -71,7 +71,7 @@ class Endereco{
 
         $stmt->bindParam(":l",$this->logradouro);
         $stmt->bindParam(":n",$this->numero);
-        $stmt->bindParam(":c",$this->complemento;
+        $stmt->bindParam(":c",$this->complemento);
         $stmt->bindParam(":b",$this->bairro);
         $stmt->bindParam(":e",$this->cep);
 
