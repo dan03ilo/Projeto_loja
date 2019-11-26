@@ -38,7 +38,7 @@ class Endereco{
     Função para cadastrar os endereços no banco de dados
     */
     public function cadastro(){
-        $query = "insert into usuario set logradouro=:l, numero=:n, complemento=:c, bairro=:b, cep=:e";
+        $query = "insert into endereco set logradouro=:l, numero=:n, complemento=:c, bairro=:b, cep=:e";
 
         $stmt = $this->conexao->prepare($query);
 
@@ -55,7 +55,14 @@ class Endereco{
         $this->bairro = htmlspecialchars(strip_tags($this->bairro));
         $this->cep = htmlspecialchars(strip_tags($this->cep));
 
-        
+
+        $stmt->bindParam(":l",$this->logradouro);
+        $stmt->bindParam(":n",$this->numero);
+        $stmt->bindParam(":c",$this->complemento);
+        $stmt->bindParam(":b",$this->bairro);
+        $stmt->bindParam(":e",$this->cep);
+
+
         if($stmt->execute()){
             return true;
         }
