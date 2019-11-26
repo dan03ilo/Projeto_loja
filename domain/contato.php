@@ -46,7 +46,7 @@ class Contato{
         htmlspecialchar -> retira as aspas e os 2 pontos que vem do formato 
         json para cadastrar em banco.
         */
-        $this->telefone = htmlspecialchars(strip_tags($this->nomeusuario));
+        $this->telefone = htmlspecialchars(strip_tags($this->telefone));
         $this->email = htmlspecialchars(strip_tags($this->email));
 
 
