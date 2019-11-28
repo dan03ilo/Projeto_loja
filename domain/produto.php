@@ -88,6 +88,7 @@ class Produto{
         $stmt->bindParam(":i2",$this->imagem2);
         $stmt->bindParam(":i3",$this->imagem3);
         $stmt->bindParam(":i4",$this->imagem4);
+        $stmt->bindParam(":i",$this->id);
 
         if($stmt->execute()){
             return true;
