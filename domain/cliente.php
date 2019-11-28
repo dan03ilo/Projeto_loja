@@ -76,11 +76,11 @@ class Cliente{
 
         $stmt = $this->conexao->prepare($query);
 
-        $stmt->bindParam(":n",$this->logradouro);
-        $stmt->bindParam(":c",$this->numero);
-        $stmt->bindParam(":e",$this->complemento);
-        $stmt->bindParam(":o",$this->bairro);
-        $stmt->bindParam(":u",$this->cep);
+        $stmt->bindParam(":n",$this->nome);
+        $stmt->bindParam(":c",$this->cpf);
+        $stmt->bindParam(":e",$this->id_endereco);
+        $stmt->bindParam(":o",$this->id_contato);
+        $stmt->bindParam(":u",$this->id_usuario);
         $stmt->bindParam(":i",$this->id);
 
         if($stmt->execute()){

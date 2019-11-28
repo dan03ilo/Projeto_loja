@@ -40,7 +40,7 @@ if(!empty($data->logradouro) && !empty($data->numero) && !empty($data->complemen
     $endereco->cep = $data->cep;
 
     if($endereco->cadastro()){
-        header("HTTP/1.0 201");
+        header("HTTP/1.0 200");
         echo json_encode(array("mensagem"=>"Endereço cadastrado com sucesso!"));
     }
     else{
