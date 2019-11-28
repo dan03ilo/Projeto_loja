@@ -1,12 +1,12 @@
 <?php
 
-class Endereco{
-    public $logradouro;
-    public $numero;
-    public $complemento;
-    public $bairro;
-    public $cep;
-
+class Cliente{
+    public $nome;
+    public $cpf;
+    public $id_endereco;
+    public $id_contato;
+    public $id_usuario;
+    
 
     public function __construct($db){
         $this->conexao = $db;
@@ -18,7 +18,7 @@ class Endereco{
     */
     public function listar(){
         #Seleciona todos os campos da tabela usuario
-        $query = "select * from endereco";
+        $query = "select * from cliente";
 
         /*
         Foi criada a variável stmt(Statment -> Sentença) para guardar a preparação da consulta
@@ -38,7 +38,7 @@ class Endereco{
     Função para cadastrar os endereços no banco de dados
     */
     public function cadastro(){
-        $query = "insert into endereco set logradouro=:l, numero=:n, complemento=:c, bairro=:b, cep=:e";
+        $query = "insert into cliente set nome=:n, cpf=:c, id_endereco=:e, id_contato=:o, id_usuario=:u";
 
         $stmt = $this->conexao->prepare($query);
 
@@ -49,18 +49,18 @@ class Endereco{
         htmlspecialchar -> retira as aspas e os 2 pontos que vem do formato 
         json para cadastrar em banco.
         */
-        $this->logradouro = htmlspecialchars(strip_tags($this->logradouro));
-        $this->numero = htmlspecialchars(strip_tags($this->numero));
-        $this->complemento = htmlspecialchars(strip_tags($this->complemento));
-        $this->bairro = htmlspecialchars(strip_tags($this->bairro));
-        $this->cep = htmlspecialchars(strip_tags($this->cep));
+        $this->nome = htmlspecialchars(strip_tags($this->nome));
+        $this->cpf = htmlspecialchars(strip_tags($this->cpf));
+        $this->id_endereco = htmlspecialchars(strip_tags($this->id_endereco));
+        $this->id_contato = htmlspecialchars(strip_tags($this->id_contato));
+        $this->id_usuario = htmlspecialchars(strip_tags($this->id_usuario));
 
 
-        $stmt->bindParam(":l",$this->logradouro);
-        $stmt->bindParam(":n",$this->numero);
-        $stmt->bindParam(":c",$this->complemento);
-        $stmt->bindParam(":b",$this->bairro);
-        $stmt->bindParam(":e",$this->cep);
+        $stmt->bindParam(":n",$this->nome);
+        $stmt->bindParam(":c",$this->cpf);
+        $stmt->bindParam(":e",$this->id_endereco);
+        $stmt->bindParam(":o",$this->id_contato);
+        $stmt->bindParam(":u",$this->id_usuario);
 
 
         if($stmt->execute()){
@@ -72,15 +72,15 @@ class Endereco{
     }
 
     public function alterarEndereco(){
-        $query = "update endereco set logradouro=:l, numero=:n, complemento=:c, bairro=:b, cep=:e where id=:i";
+        $query = "update cliente set nome=:n, cpf=:c, id_endereco=:e, id_contato=:o, id_usuario=:u where id=:i";
 
         $stmt = $this->conexao->prepare($query);
 
-        $stmt->bindParam(":l",$this->logradouro);
-        $stmt->bindParam(":n",$this->numero);
-        $stmt->bindParam(":c",$this->complemento);
-        $stmt->bindParam(":b",$this->bairro);
-        $stmt->bindParam(":e",$this->cep);
+        $stmt->bindParam(":n",$this->logradouro);
+        $stmt->bindParam(":c",$this->numero);
+        $stmt->bindParam(":e",$this->complemento);
+        $stmt->bindParam(":o",$this->bairro);
+        $stmt->bindParam(":u",$this->cep);
         $stmt->bindParam(":i",$this->id);
 
         if($stmt->execute()){
@@ -92,7 +92,7 @@ class Endereco{
     }
 
     public function apagar(){
-        $query = "delete from endereco where id=?";
+        $query = "delete from cliente where id=?";
 
         $stmt=$this->conexao->prepare($query);
 
