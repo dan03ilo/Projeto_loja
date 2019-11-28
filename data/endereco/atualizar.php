@@ -6,7 +6,7 @@ Vamos construir os cabeçalho para o trabalho com a api
 header("Access-Control-Allow-Origin:*");
 header("Content-Type: application/json; charset=utf-8");
 
-#Esse cabeçalho define o método de envio com POST, ou seja, como cadastro
+#Esse cabeçalho define o método de envio com PUT, ou seja, como cadastro
 header("Access-Control-Allow-Methods:PUT");
 
 #Define o tempo de espera da api. Neste caso é 1 minuto.
@@ -31,13 +31,14 @@ O cliente irá enviar os dados no formato json. Porém nós precisamos dos dados
 $data = json_decode(file_get_contents("php://input"));
 
 #Verificar se os campos estão com dados.
-if(!empty($data->logradouro) && !empty($data->numero) && !empty($data->complemento) && !empty($data->bairro) && !empty($data->cep)){
+if(!empty($data->logradouro) && !empty($data->numero) && !empty($data->complemento) && !empty($data->bairro) && !empty($data->cep)  && !empty($data->id)){
 
     $endereco->logradouro = $data->logradouro;
     $endereco->numero = $data->numero;
     $endereco->complemento = $data->complemento;
     $endereco->bairro = $data->bairro;
     $endereco->cep = $data->cep;
+    $endereco->id = $data->id;
 
     if($endereco->alterarEndereco()){
         header("HTTP/1.0 201");

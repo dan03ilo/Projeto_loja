@@ -6,7 +6,7 @@ Vamos construir os cabeçalho para o trabalho com a api
 header("Access-Control-Allow-Origin:*");
 header("Content-Type: application/json; charset=utf-8");
 
-#Esse cabeçalho define o método de envio com POST, ou seja, como cadastro
+#Esse cabeçalho define o método de envio com PUT, ou seja, como cadastro
 header("Access-Control-Allow-Methods:PUT");
 
 #Define o tempo de espera da api. Neste caso é 1 minuto.

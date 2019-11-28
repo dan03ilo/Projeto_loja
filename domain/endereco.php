@@ -71,8 +71,8 @@ class Endereco{
         }        
     }
 
-    public function atualizarEndereco(){
-        $query = "update usuario set logradouro=:l, numero=:n, complemento=:c, bairro=:b, cep=:e where id=:i";
+    public function alterarEndereco(){
+        $query = "update endereco set logradouro=:l, numero=:n, complemento=:c, bairro=:b, cep=:e where id=:i";
 
         $stmt = $this->conexao->prepare($query);
 
@@ -81,6 +81,7 @@ class Endereco{
         $stmt->bindParam(":c",$this->complemento);
         $stmt->bindParam(":b",$this->bairro);
         $stmt->bindParam(":e",$this->cep);
+        $stmt->bindParam(":i",$this->id);
 
         if($stmt->execute()){
             return true;
