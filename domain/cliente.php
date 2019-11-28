@@ -71,7 +71,7 @@ class Cliente{
         }        
     }
 
-    public function alterarEndereco(){
+    public function alterarCliente(){
         $query = "update cliente set nome=:n, cpf=:c, id_endereco=:e, id_contato=:o, id_usuario=:u where id=:i";
 
         $stmt = $this->conexao->prepare($query);
