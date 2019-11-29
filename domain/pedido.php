@@ -59,12 +59,12 @@ class Pedido{
         }
     }
 
-    public function alterarEstoque(){
+    public function alterarPedido(){
         $query = "update pedido set id_cliente=:c, where id=:i";
 
         $stmt = $this->conexao->prepare($query);
 
-        $stmt->bindParam(":c",$this->id_pedido);
+        $stmt->bindParam(":c",$this->id_cliente);
         $stmt->bindParam(":i",$this->id);
 
         if($stmt->execute()){
