@@ -1,6 +1,6 @@
 <?php
 
-class Estoque{
+class Pedido{
     public $id_cliente;
     
 
@@ -21,7 +21,7 @@ class Estoque{
         select que será executada posteriomente.
         */
 
-        $stmt = $this -> conexao -> prepare ($query);
+        $stmt = $this ->conexao -> prepare ($query);
 
         #execução da consulta a guarda de dados na variavel stml
 
@@ -35,7 +35,7 @@ class Estoque{
     Função para cadastrar os estoques no banco de dados
     */
     public function cadastro(){
-        $query = "insert into pedido set id_pedido=:p";
+        $query = "insert into pedido set id_cliente=:c";
 
         $stmt = $this->conexao->prepare($query);
 
@@ -47,9 +47,9 @@ class Estoque{
         para cadastrar em banco.
         */
 
-        $this->id_produto = htmlspecialchars(strip_tags($this->id_pedido));
+        $this->id_cliente = htmlspecialchars(strip_tags($this->id_cliente));
 
-        $stmt->bindParam(":p",$this->id_pedido);
+        $stmt->bindParam(":c",$this->id_cliente);
 
         if($stmt->execute()){
             return true;
@@ -60,11 +60,11 @@ class Estoque{
     }
 
     public function alterarEstoque(){
-        $query = "update pedido set id_pedido=:p, where id=:i";
+        $query = "update pedido set id_cliente=:c, where id=:i";
 
         $stmt = $this->conexao->prepare($query);
 
-        $stmt->bindParam(":p",$this->id_pedido);
+        $stmt->bindParam(":c",$this->id_pedido);
         $stmt->bindParam(":i",$this->id);
 
         if($stmt->execute()){
