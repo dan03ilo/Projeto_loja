@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -20,10 +22,12 @@ export class HomePage {
   */
   
   public produtos:Array<Object>=[];
+  constructor(private http:HttpClient, private router:Router) {}
 
-
-  constructor(private http:HttpClient) {}
-
+  public navDetalheProduto(id:string){
+    console.log(id);
+    this.router.navigate(["detalheproduto",{idpro:id}])
+  }
   /*
   O comando ngOnInit(ng-> todos os comandos internos do Angular)
   (On->Ativar, Ligar | Init-> Initialize = Iniciar)
